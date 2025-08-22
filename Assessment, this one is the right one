@@ -1,0 +1,86 @@
+inventory = {} # sweet bakery inventory
+def add_ingredients(): # Here we have the add ingredients function like her name says isto add ingredients
+    try:
+        ingredient_name = input("Enter ingredient name; ").strip().lower()
+        if ingredient_name in inventory:
+         print("sorry: ingredient is ready in the inventory!")
+         return
+    
+        quantity = float(input("Enter the quantity: ").strip())
+        unit = input("Enter the unit (e.g., kg, litre, pcs): ").strip().lower()
+        inventory[ingredient_name] = {"quantity": quantity, "unit": unit}
+        print("ingredient added!")
+    except ValueError:
+        print("Error:invalid input!")     
+def check_ingredients(): # This function will check all the ingrendiens in the inventory/stock
+     if not inventory:
+         print("No ingredients in the inventory.")
+         return
+     print("\ningredients in the inventory:")
+     print("name\tquantity\tunit")
+     for ingredient_name, info in inventory.items():
+         print(f"{ingredient_name}\t{info['quantity']}\t{info['unit']}")
+     print("-" * 50)
+
+def update_ingredients(): # In this function we can update the ingredients in the inventory
+    ingredient_name = input("Enter ingredient name to update: ").strip().lower()
+    if ingredient_name in inventory:
+        new_quantity = float(input(f"Enter the new quantity for {ingredient_name}: "))
+        new_unit = input(f"Enter the unit for {ingredient_name} (leave blank to keep current): ").strip().lower()
+        if new_unit:
+            inventory[ingredient_name]["unit"] = new_unit
+        inventory[ingredient_name]["quantity"] = new_quantity     
+        print(f"Ingredient {ingredient_name} updated.")
+    else:
+        print("ingredient not found in the inventory.")
+    
+
+def search_ingredients(): # This is the searching function so we can search any ingedient inside the inemvetory
+    ingredient_name = input("Enter the ingredient name to search: ").strip().lower()
+    if ingredient_name in inventory:
+        info = inventory[ingredient_name]
+        print(f"Ingredient {ingredient_name} found with quantity: {info['quantity']} {info['unit']} ")
+    else:
+        print("Error! Ingredient  not found in the inventory.")
+while True: #Here we have the main Loop of the program
+    print("\nBakery Inventory Managemet")
+    print("1." "Add Ingredients")
+    print("2." "Check Ingredients")
+    print("3." "Update Ingredients")
+    print("4." "Search Ingredients")
+    print("5." "Exit")
+
+    choice= input("Enter Your Choice: ").strip() # here in the choice the user can choose what he wants to do or decide what he wants on the moement
+   
+    if choice == "1":
+        add_ingredients()
+    elif choice == "2":
+        check_ingredients()
+    elif choice == "3":
+        update_ingredients()
+    elif choice == "4":
+        search_ingredients()
+    elif choice == "5":
+        print("Exiting the program. byebye!")
+        break
+    else:
+        print("Invalid choice! please try again.")
+
+
+
+
+    
+
+
+
+        
+
+
+
+
+
+
+
+
+
+   
